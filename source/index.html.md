@@ -1,93 +1,93 @@
 ---
-title: InfoBip Web API Interface
+Title: InfoBip Web API Interface
 
 Air time Topup: # this a post method
   - airtime topup
   - airtime Topup status
 
-toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='http://centricgateway.com'>Documentation design by Centric gateway</a>
 
 includes:
   - errors
 
-search: true
----
-
 # Introduction
 
 Welcome to the InfoBip API Interface! .
 
-# Authentication
+# /airtime/topup
 
-> To authorize, use this code:
+> To topup airtime, use this given sample code:
 
-```ruby
-require 'kittn'
+>Authorization parameter provided in header to authenticate the API call
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```String
+Default value : Bearer Test
+```
+# Body
+>Transaction parameters that are needed to perform topup request
+
+```json
+{
+  "publickey": "test",
+  "source": {
+    "operation": "airtime_topup",
+    "account": {
+      "recipient": "2348193645321"
+    }
+  },
+  "transaction": {
+    "reference": "TRX_1234"
+  },
+  "order": {
+    "country": "NG",
+    "currency": "NGN",
+    "amount": 100
+  }
+}
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
+`parameter content-type : application/json`
 
 Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 
 Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Response content-type : application/json`
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
 
-# Kittens
+# /airtime/topup/status
 
-## Get All Kittens
+>Airtime topup status, use this given sample code:
 
-```ruby
-require 'kittn'
+>Authorization parameter provided in header to authenticate the API call
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```String
+Default value : Bearer Test
+```
+# Body
+>Transaction parameters that are needed to perform airtime topup status
+
+>Transaction parameters that are needed to perform status request
+```json
+{
+  "publickey": "test",
+  "transaction": {
+    "reference": "TRX_1234"
+  },
+  "source": {
+    "operation": "airtime_topup_status"
+  }
+}
 ```
 
-```python
-import kittn
+`parameter content-type : application/json`
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
+Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+`Response content-type : application/json`
 
 > The above command returns JSON structured like this:
 
